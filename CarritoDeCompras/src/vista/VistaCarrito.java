@@ -1,10 +1,18 @@
 package vista;
 
 import controlador.ControladorCarrito;
+import modelo.Compra;
+
 import java.util.Scanner;
 
 public class VistaCarrito {
-    public void mostrarMenu(ControladorCarrito controlador) {
+    private ControladorCarrito controladorCarrito;
+
+    public VistaCarrito(ControladorCarrito controladorCarrito) {
+        this.controladorCarrito = controladorCarrito;
+    }
+
+    public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
@@ -15,39 +23,54 @@ public class VistaCarrito {
             System.out.println("3. Ver carrito");
             System.out.println("4. Eliminar producto del carrito");
             System.out.println("5. Realizar compra");
-            System.out.println("6. Salir");
+            System.out.println("6. Ver historial de compras");
+            System.out.println("7. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
-                    controlador.listarProductos();
+                    controladorCarrito.listarProductos();
                     break;
                 case 2:
                     System.out.print("\n Ingrese el índice del producto a agregar: ");
                     int indiceAgregar = scanner.nextInt();
-                    controlador.agregarProductoAlCarrito(indiceAgregar);
+                    controladorCarrito.agregarProductoAlCarrito(indiceAgregar);
                     break;
                 case 3:
-                    controlador.verCarrito();
+                    controladorCarrito.verCarrito();
                     break;
                 case 4:
                     System.out.print("\n Ingrese el índice del producto a eliminar: ");
                     int indiceEliminar = scanner.nextInt();
-                    controlador.eliminarProductoDelCarrito(indiceEliminar);
+                    controladorCarrito.eliminarProductoDelCarrito(indiceEliminar);
                     break;
                 case 5:
-                    controlador.realizarCompra();
+                    controladorCarrito.realizarCompra();
                     break;
                 case 6:
+                    mostrarHistorialDeCompras();
+                    break;
+                case 7:
                     System.out.println("\n Saliendo...");
                     break;
                 default:
                     System.out.println("Opción no válida.");
                     break;
             }
-        } while (opcion != 6);
-        
-        scanner.close();
+        } while (opcion != 7);
+    }
+
+    public void mostrarHistorialDeCompras() {
+        if (controladorCarrito.getUsuario().getComprasRealizadas().isEmpty()) {
+            System.out.println("\nNo tiene compras en su historial.");
+        } else {
+            System.out.println("\nHistorial de compras:");
+            int i = 0;
+            for (Compra compra : controladorCarrito.getUsuario().getComprasRealizadas()) {
+                System.out.println(i + ": " + compra.getProducto().getNombre() + " - $" + compra.getProducto().getPrecio());
+                i++;
+            }
+        }
     }
 }

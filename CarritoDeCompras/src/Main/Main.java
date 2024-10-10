@@ -22,14 +22,16 @@ public class Main {
         // Verificar si el usuario ha iniciado sesión
         if (controladorUsuario.getUsuarioActual() != null) {
             // Crear el controlador del carrito pasando el usuario autenticado
-            ControladorCarrito controladorCarrito = new ControladorCarrito(controladorUsuario.getUsuarioActual()); // Asegúrate de que el controlador tenga un constructor adecuado
+            ControladorCarrito controladorCarrito = new ControladorCarrito(controladorUsuario.getUsuarioActual());
+
+            // Crear la vista del carrito
             VistaCarrito vistaCarrito = new VistaCarrito(controladorCarrito);
 
             // Menú principal de la aplicación: operaciones del carrito de compras
-            vistaCarrito.mostrarMenu();
+            vistaCarrito.mostrarMenu(); // Mostrar el menú de la vista del carrito
 
             // Simulación de realizar una compra
-            controladorCarrito.realizarCompra(controladorUsuario.getUsuarioActual());
+            controladorCarrito.realizarCompra(); // Realizar la compra
 
             // Después de la compra, permitir al usuario dejar una reseña
             VistaReseña vistaReseña = new VistaReseña(controladorReseña, controladorUsuario);
