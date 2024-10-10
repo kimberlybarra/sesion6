@@ -24,7 +24,7 @@ public class Jugador {
     public void atacar(Enemigo enemigo) {
         if (objetoEquipado != null) {
             // El daño puede ser diferente dependiendo del arma
-            int danio = 10; // Ejemplo de daño fijo
+            int danio = 10; 
             enemigo.recibirDanio(danio);
         }
     }

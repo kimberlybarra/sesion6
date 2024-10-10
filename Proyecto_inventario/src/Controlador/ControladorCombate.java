@@ -22,22 +22,18 @@ public class ControladorCombate {
 
     public void iniciarCombate() {
         while (jugador.getSalud() > 0 && !enemigos.isEmpty()) {
-            // Turno del jugador
             vista.mostrarEstado(jugador, enemigos);
             jugadorAtacar();
 
-            // Turno de los enemigos
             for (Enemigo enemigo : enemigos) {
                 if (enemigo.getSalud() > 0) {
                     enemigoAtacar(enemigo);
                 }
             }
 
-            // Eliminar enemigos derrotados
             enemigos.removeIf(enemigo -> enemigo.getSalud() <= 0);
         }
 
-        // Final del combate
         if (jugador.getSalud() <= 0) {
             vista.mostrarMensaje("¡El jugador ha sido derrotado!");
         } else {
@@ -46,8 +42,7 @@ public class ControladorCombate {
     }
 
     private void jugadorAtacar() {
-        // El jugador elige a qué enemigo atacar (puedes modificar para recibir input)
-        Enemigo enemigo = enemigos.get(random.nextInt(enemigos.size())); // Ataque aleatorio a un enemigo
+        Enemigo enemigo = enemigos.get(random.nextInt(enemigos.size())); 
         jugador.atacar(enemigo);
         if (enemigo.getSalud() <= 0) {
             vista.mostrarMensaje(enemigo.getNombre() + " ha sido derrotado.");
@@ -55,7 +50,7 @@ public class ControladorCombate {
     }
 
     private void enemigoAtacar(Enemigo enemigo) {
-        int danio = random.nextInt(10) + 1; // Daño aleatorio del enemigo
+        int danio = random.nextInt(10) + 1; 
         jugador.recibirDanio(danio);
         vista.mostrarMensaje(enemigo.getNombre() + " ataca a " + jugador.getNombre() + " y causa " + danio + " de daño.");
     }
