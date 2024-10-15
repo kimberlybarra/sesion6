@@ -71,14 +71,13 @@ public class ControladorCarrito {
     }
 
     public void realizarCompra() {
-        if (carrito.getProductos().isEmpty()) {
-            System.out.println("No hay productos en el carrito para realizar la compra.");
-            return;
+        for (Producto producto : carrito.getProductos()) {
+            Compra compra = new Compra(producto); 
+            compra.realizarCompra(); 
         }
-        Compra compra = new Compra(carrito);
-        compra.realizarCompra();
-        carrito = new Carrito(); // Reiniciar después de la compra
+        carrito = new Carrito(); 
     }
+
 
     public Usuario getUsuario() {
         return usuario;

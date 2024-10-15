@@ -62,15 +62,20 @@ public class VistaCarrito {
     }
 
     public void mostrarHistorialDeCompras() {
-        if (controladorCarrito.getUsuario().getComprasRealizadas().isEmpty()) {
-            System.out.println("\nNo tiene compras en su historial.");
-        } else {
-            System.out.println("\nHistorial de compras:");
-            int i = 0;
-            for (Compra compra : controladorCarrito.getUsuario().getComprasRealizadas()) {
-                System.out.println(i + ": " + compra.getProducto().getNombre() + " - $" + compra.getProducto().getPrecio());
-                i++;
+        if (controladorCarrito.getUsuario() != null && controladorCarrito.getUsuario().getComprasRealizadas() != null) {
+            if (controladorCarrito.getUsuario().getComprasRealizadas().isEmpty()) {
+                System.out.println("\nNo tiene compras en su historial.");
+            } else {
+                System.out.println("\nHistorial de compras:");
+                int i = 0;
+                for (Compra compra : controladorCarrito.getUsuario().getComprasRealizadas()) {
+                    System.out.println(i + ": " + compra.getProducto().getNombre() + " - $" + compra.getProducto().getPrecio());
+                    i++;
+                }
             }
+        } else {
+            System.out.println("\nEl usuario no está autenticado.");
         }
     }
+
 }

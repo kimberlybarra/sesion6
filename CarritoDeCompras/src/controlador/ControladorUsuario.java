@@ -22,10 +22,10 @@ public class ControladorUsuario {
         for (Usuario usuario : usuarios) {
             if (usuario.getEmail().equals(email) && usuario.verificarContraseña(contraseña)) {
                 usuarioActual = usuario;
-                return true; // Inicio de sesión exitoso
+                return true; 
             }
         }
-        return false; // Fallo en el inicio de sesión
+        return false; 
     }
 
     public Usuario getUsuarioActual() {

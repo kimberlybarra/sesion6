@@ -21,4 +21,8 @@ public class Producto {
     public String toString() {
         return nombre + " - $" + precio;
     }
+
+	public Producto[] getProductos() {
+		return null;
+	}
 }

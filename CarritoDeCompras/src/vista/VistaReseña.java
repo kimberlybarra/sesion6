@@ -29,13 +29,13 @@ public class VistaReseña {
         System.out.println("Seleccione un producto para dejar una reseña:");
         for (int i = 0; i < usuario.getComprasRealizadas().size(); i++) {
             Compra compra = usuario.getComprasRealizadas().get(i);
-            Producto producto = compra.getProducto(); // Asegúrate de que getProducto() esté implementado
+            Producto producto = compra.getProducto(); 
             System.out.println(i + ": " + producto.getNombre() + " - $" + producto.getPrecio());
         }
 
         int opcionProducto;
         opcionProducto = scanner.nextInt();
-		scanner.nextLine(); // Consume el salto de línea restante
+		scanner.nextLine(); 
 
 		if (opcionProducto >= 0 && opcionProducto < usuario.getComprasRealizadas().size()) {
 		    Compra compraSeleccionada = usuario.getComprasRealizadas().get(opcionProducto);

@@ -1,22 +1,26 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Compra {
-	 private Carrito carrito;
+    private Producto producto; 
+    private static List<Compra> comprasRealizadas = new ArrayList<>(); 
 
-	    public Compra(Carrito carrito) {
-	        this.carrito = carrito;
-	    }
+    public Compra(Producto producto) {
+        this.producto = producto;
+    }
 
-	    public void realizarCompra() {
-	        double total = carrito.calcularTotal();
-	        System.out.println("Compra realizada. Total: $" + total);
-	        carrito = new Carrito(); // Reiniciar el carrito después de la compra
-	    }
+    public void realizarCompra() {
+        System.out.println("Compra realizada: " + producto.getNombre() + " - $" + producto.getPrecio());
+        comprasRealizadas.add(this); 
+    }
 
-		public Producto getProducto() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+    public Producto getProducto() {
+        return producto; 
+    }
 
+    public static List<Compra> getComprasRealizadas() {
+        return comprasRealizadas;
+    }
 }
-
